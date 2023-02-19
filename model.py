@@ -75,8 +75,8 @@ class BaseResponse(BaseModel):
 class UserInfo(BaseResponse):
     class Content(BaseModel):
         account_info: AccountInfo
-        recent_score: list[Record]
-        songinfo: list[Chart]
+        recent_score: Optional[list[Record]]
+        songinfo: Optional[list[Chart]]
 
     content: Optional[Content]
 
@@ -86,8 +86,8 @@ class UserBest(BaseResponse):
         account_info: AccountInfo
         record: Record
         songinfo: list[Chart]
-        recent_score: Record
-        recent_songinfo: Chart
+        recent_score: Optional[Record]
+        recent_songinfo: Optional[Chart]
 
     content: Optional[Content]
 
@@ -98,9 +98,9 @@ class UserBest30(BaseResponse):
         recent10_avg: float
         account_info: AccountInfo
         best30_list: list[Record]
-        best30_songinfo: list[Chart]
-        recent_score: Record
-        recent_songinfo: Chart
+        best30_songinfo: Optional[list[Chart]]
+        recent_score: Optional[Record]
+        recent_songinfo: Optional[Chart]
 
     content: Optional[Content]
 
@@ -132,7 +132,7 @@ class SongRandom(BaseResponse):
     class Content(BaseModel):
         id: str
         ratingClass: int
-        songinfo: Chart
+        songinfo: Optional[Chart]
 
     content: Optional[Content]
 
@@ -151,9 +151,9 @@ class DataTheory(BaseResponse):
         recent10_avg: float
         account_info: AccountInfo
         best30_list: list[Record]
-        best30_songinfo: list[Chart]
-        recent_score: Record
-        recent_songinfo: Chart
+        best30_songinfo: Optional[list[Chart]]
+        recent_score: Optional[Record]
+        recent_songinfo: Optional[Chart]
 
     content: Optional[Content]
 
