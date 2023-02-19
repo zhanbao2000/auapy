@@ -15,7 +15,7 @@ pip install -r requirements.txt
 ## Usage
 
 ```python
-from src.plugins.mokabot_arcaea.auapy import ArcaeaUnlimitedAPIClient
+from auapy import ArcaeaUnlimitedAPIClient
 
 async def main():
     
