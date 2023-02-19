@@ -1,3 +1,5 @@
+import json
+
 from ..model import *
 
 
@@ -40,3 +42,27 @@ def test_song_random():
 
     test_response = {'status': 0, 'content': {'id': 'divinelight', 'ratingClass': 2, 'songinfo': {'name_en': 'Divine Light of Myriad', 'name_jp': '光速神授説 - Divine Light of Myriad -', 'artist': 'yoho', 'bpm': '172', 'bpm_base': 172.0, 'set': 'observer_append_2', 'set_friendly': 'Esoteric Order', 'time': 142, 'side': 0, 'world_unlock': False, 'remote_download': True, 'bg': 'observer_light', 'date': 1626825602, 'version': '3.7', 'difficulty': 21, 'rating': 108, 'note': 1021, 'chart_designer': '東星※神授', 'jacket_designer': '緋原ヨウ', 'jacket_override': False, 'audio_override': False}}}
     assert SongRandom(**test_response)
+
+
+def test_data_update():
+
+    test_response = {'status': 0, 'content': {'url': 'https://static-bin.lowiro.com/serve/arcaea_3.11.0c.apk?token=HthO8sS2Fm8sgZvT08zcW4Qjzd0nZAWTgX6LCFDp957ILarc4qqzXUuWMGDMEufV3', 'version': '3.11.0c'}}
+    assert DataUpdate(**test_response)
+
+
+def test_data_theory():
+
+    test_response = {'status': 0, 'content': {'best30_avg': 12.480000000000002, 'recent10_avg': 12.870000000000001, 'account_info': {'code': '000000000', 'name': 'Max Grades - v3.0', 'user_id': 0, 'is_mutual': False, 'is_char_uncapped_override': True, 'is_char_uncapped': True, 'is_skill_sealed': False, 'rating': 1257, 'join_date': 1487980800, 'character': 5}, 'best30_list': [{'score': 10001279, 'health': 100, 'rating': 13.3, 'song_id': 'fractureray', 'modifier': 0, 'difficulty': 2, 'clear_type': 3, 'best_clear_type': 3, 'time_played': 1531699208, 'near_count': 0, 'miss_count': 0, 'perfect_count': 1279, 'shiny_perfect_count': 1279}], 'best30_songinfo': [{'name_en': 'Fracture Ray', 'name_jp': '', 'artist': 'Sakuzyo', 'bpm': '200', 'bpm_base': 200.0, 'set': 'rei', 'set_friendly': 'Luminous Sky', 'time': 154, 'side': 0, 'world_unlock': False, 'remote_download': True, 'bg': 'fractureray', 'date': 1531699208, 'version': '1.7', 'difficulty': 22, 'rating': 113, 'note': 1279, 'chart_designer': 'Paradox Zero', 'jacket_designer': 'シエラ', 'jacket_override': False, 'audio_override': False}], 'recent_score': {'score': 10001279, 'health': 100, 'rating': 13.3, 'song_id': 'fractureray', 'modifier': 0, 'difficulty': 2, 'clear_type': 3, 'best_clear_type': 3, 'time_played': 1531699208, 'near_count': 0, 'miss_count': 0, 'perfect_count': 1279, 'shiny_perfect_count': 1279}, 'recent_songinfo': {'name_en': 'Fracture Ray', 'name_jp': '', 'artist': 'Sakuzyo', 'bpm': '200', 'bpm_base': 200.0, 'set': 'rei', 'set_friendly': 'Luminous Sky', 'time': 154, 'side': 0, 'world_unlock': False, 'remote_download': True, 'bg': 'fractureray', 'date': 1531699208, 'version': '1.7', 'difficulty': 22, 'rating': 113, 'note': 1279, 'chart_designer': 'Paradox Zero', 'jacket_designer': 'シエラ', 'jacket_override': False, 'audio_override': False}}}
+    assert DataTheory(**test_response)
+
+
+def test_data_challenge():
+
+    test_response = {'status': 0, 'content': 'JfdDAIQBAAAkdLOHw7PyRfWyhkJvH1Xzfevm7quQMwOk5Lc99fD1vgesJ8uf5ZJgPfgtYlYGDu1FLk31AaNAYfGocKoRMMSAlqDc4y/aZxXCn4cGjnJ7ovR9rkCQG8W1sJ9cHuK4CDo='}
+    assert DataChallenge(**test_response)
+
+
+def test_data_cert():
+
+    test_response = {'status': 0, 'content': {'entry': 'join/21', 'version': '4.1.4c', 'cert': 'HERE IS THE CERT', 'password': 'HelloWorld'}}
+    assert DataCert(**test_response)

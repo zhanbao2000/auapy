@@ -130,3 +130,42 @@ class SongRandom(BaseModel):
 
     status: int
     content: Content
+
+
+class DataUpdate(BaseModel):
+    class Content(BaseModel):
+        url: str
+        version: str
+
+    status: int
+    content: Content
+
+
+class DataTheory(BaseModel):
+    class Content(BaseModel):
+        best30_avg: float
+        recent10_avg: float
+        account_info: AccountInfo
+        best30_list: list[Record]
+        best30_songinfo: list[Chart]
+        recent_score: Record
+        recent_songinfo: Chart
+
+    status: int
+    content: Content
+
+
+class DataChallenge(BaseModel):
+    status: int
+    content: str
+
+
+class DataCert(BaseModel):
+    class Content(BaseModel):
+        entry: str
+        version: str
+        cert: str
+        password: str
+
+    status: int
+    content: Content
