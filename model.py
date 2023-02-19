@@ -63,18 +63,25 @@ class Song(BaseModel):
     alias: list[str]
 
 
-class UserInfo(BaseModel):
+class BaseResponse(BaseModel):
     class Content(BaseModel):
-        account_info: AccountInfo
-        recent_score: list[Record]
-        songinfo: list[Chart]
+        ...
 
     status: int
     content: Optional[Content]
     message: Optional[str]
 
 
-class UserBest(BaseModel):
+class UserInfo(BaseResponse):
+    class Content(BaseModel):
+        account_info: AccountInfo
+        recent_score: list[Record]
+        songinfo: list[Chart]
+
+    content: Optional[Content]
+
+
+class UserBest(BaseResponse):
     class Content(BaseModel):
         account_info: AccountInfo
         record: Record
@@ -82,12 +89,10 @@ class UserBest(BaseModel):
         recent_score: Record
         recent_songinfo: Chart
 
-    status: int
     content: Optional[Content]
-    message: Optional[str]
 
 
-class UserBest30(BaseModel):
+class UserBest30(BaseResponse):
     class Content(BaseModel):
         best30_avg: float
         recent10_avg: float
@@ -97,62 +102,50 @@ class UserBest30(BaseModel):
         recent_score: Record
         recent_songinfo: Chart
 
-    status: int
     content: Optional[Content]
-    message: Optional[str]
 
 
-class SongInfo(BaseModel):
+class SongInfo(BaseResponse):
     class Content(BaseModel):
         song_id: str
         difficulties: list[Chart]
         alias: list[str]
 
-    status: int
     content: Optional[Content]
-    message: Optional[str]
 
 
-class SongList(BaseModel):
+class SongList(BaseResponse):
     class Content(BaseModel):
         songs: list[Song]
 
     class TooManyRecords(BaseModel):
         songs: list[str]
 
-    status: int
     content: Union[Content, TooManyRecords]
-    message: Optional[str]
 
 
-class SongAlias(BaseModel):
-    status: int
+class SongAlias(BaseResponse):
     content: Optional[list[str]]
-    message: Optional[str]
 
 
-class SongRandom(BaseModel):
+class SongRandom(BaseResponse):
     class Content(BaseModel):
         id: str
         ratingClass: int
         songinfo: Chart
 
-    status: int
     content: Optional[Content]
-    message: Optional[str]
 
 
-class DataUpdate(BaseModel):
+class DataUpdate(BaseResponse):
     class Content(BaseModel):
         url: str
         version: str
 
-    status: int
     content: Optional[Content]
-    message: Optional[str]
 
 
-class DataTheory(BaseModel):
+class DataTheory(BaseResponse):
     class Content(BaseModel):
         best30_avg: float
         recent10_avg: float
@@ -162,24 +155,18 @@ class DataTheory(BaseModel):
         recent_score: Record
         recent_songinfo: Chart
 
-    status: int
     content: Optional[Content]
-    message: Optional[str]
 
 
-class DataChallenge(BaseModel):
-    status: int
+class DataChallenge(BaseResponse):
     content: Optional[str]
-    message: Optional[str]
 
 
-class DataCert(BaseModel):
+class DataCert(BaseResponse):
     class Content(BaseModel):
         entry: str
         version: str
         cert: str
         password: str
 
-    status: int
     content: Optional[Content]
-    message: Optional[str]
