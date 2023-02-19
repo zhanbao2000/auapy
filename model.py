@@ -85,7 +85,7 @@ class UserBest(BaseResponse):
     class Content(BaseModel):
         account_info: AccountInfo
         record: Record
-        songinfo: list[Chart]
+        songinfo: Optional[list[Chart]]
         recent_score: Optional[Record]
         recent_songinfo: Optional[Chart]
 
