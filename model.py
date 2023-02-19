@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Union
 
 from pydantic import BaseModel
 
@@ -70,7 +70,8 @@ class UserInfo(BaseModel):
         songinfo: list[Chart]
 
     status: int
-    content: Content
+    content: Optional[Content]
+    message: Optional[str]
 
 
 class UserBest(BaseModel):
@@ -82,7 +83,8 @@ class UserBest(BaseModel):
         recent_songinfo: Chart
 
     status: int
-    content: Content
+    content: Optional[Content]
+    message: Optional[str]
 
 
 class UserBest30(BaseModel):
@@ -96,7 +98,8 @@ class UserBest30(BaseModel):
         recent_songinfo: Chart
 
     status: int
-    content: Content
+    content: Optional[Content]
+    message: Optional[str]
 
 
 class SongInfo(BaseModel):
@@ -106,20 +109,26 @@ class SongInfo(BaseModel):
         alias: list[str]
 
     status: int
-    content: Content
+    content: Optional[Content]
+    message: Optional[str]
 
 
 class SongList(BaseModel):
     class Content(BaseModel):
         songs: list[Song]
 
+    class TooManyRecords(BaseModel):
+        songs: list[str]
+
     status: int
-    content: Content
+    content: Union[Content, TooManyRecords]
+    message: Optional[str]
 
 
 class SongAlias(BaseModel):
     status: int
-    content: list[str]
+    content: Optional[list[str]]
+    message: Optional[str]
 
 
 class SongRandom(BaseModel):
@@ -129,7 +138,8 @@ class SongRandom(BaseModel):
         songinfo: Chart
 
     status: int
-    content: Content
+    content: Optional[Content]
+    message: Optional[str]
 
 
 class DataUpdate(BaseModel):
@@ -138,7 +148,8 @@ class DataUpdate(BaseModel):
         version: str
 
     status: int
-    content: Content
+    content: Optional[Content]
+    message: Optional[str]
 
 
 class DataTheory(BaseModel):
@@ -152,12 +163,14 @@ class DataTheory(BaseModel):
         recent_songinfo: Chart
 
     status: int
-    content: Content
+    content: Optional[Content]
+    message: Optional[str]
 
 
 class DataChallenge(BaseModel):
     status: int
-    content: str
+    content: Optional[str]
+    message: Optional[str]
 
 
 class DataCert(BaseModel):
@@ -168,4 +181,5 @@ class DataCert(BaseModel):
         password: str
 
     status: int
-    content: Content
+    content: Optional[Content]
+    message: Optional[str]

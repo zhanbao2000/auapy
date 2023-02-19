@@ -32,6 +32,7 @@ def test_song_list():
     test_response = {'status': 0, 'content': {'songs': [{'song_id': 'filament', 'difficulties': [{'name_en': 'Filament', 'name_jp': '', 'artist': 'Puru', 'bpm': '170', 'bpm_base': 170.0, 'set': 'single', 'set_friendly': 'Memory Archive', 'time': 143, 'side': 0, 'world_unlock': False, 'remote_download': True, 'bg': 'omatsuri_light', 'date': 1574726400, 'version': '2.4', 'difficulty': 8, 'rating': 45, 'note': 582, 'chart_designer': 'Toaster', 'jacket_designer': 'Hanamori Hiro', 'jacket_override': False, 'audio_override': False}, {'name_en': 'Filament', 'name_jp': '', 'artist': 'Puru', 'bpm': '170', 'bpm_base': 170.0, 'set': 'single', 'set_friendly': 'Memory Archive', 'time': 143, 'side': 0, 'world_unlock': False, 'remote_download': True, 'bg': 'omatsuri_light', 'date': 1574726400, 'version': '2.4', 'difficulty': 14, 'rating': 75, 'note': 780, 'chart_designer': 'Toaster', 'jacket_designer': 'Hanamori Hiro', 'jacket_override': False, 'audio_override': False}, {'name_en': 'Filament', 'name_jp': '', 'artist': 'Puru', 'bpm': '170', 'bpm_base': 170.0, 'set': 'single', 'set_friendly': 'Memory Archive', 'time': 143, 'side': 0, 'world_unlock': False, 'remote_download': True, 'bg': 'omatsuri_light', 'date': 1574726400, 'version': '2.4', 'difficulty': 19, 'rating': 97, 'note': 991, 'chart_designer': 'Toaster', 'jacket_designer': 'Hanamori Hiro', 'jacket_override': False, 'audio_override': False}], 'alias': ['灯丝', '灯芯']}]}}
     assert SongList(**test_response)
 
+
 def test_song_alias():
 
     test_response = {'status': 0, 'content': ['色号', '对立色']}
@@ -66,3 +67,12 @@ def test_data_cert():
 
     test_response = {'status': 0, 'content': {'entry': 'join/21', 'version': '4.1.4c', 'cert': 'HERE IS THE CERT', 'password': 'HelloWorld'}}
     assert DataCert(**test_response)
+
+
+def test_on_error():
+
+    test_response = {'status': -8, 'message': 'too many records', 'content': {'songs': ['lostcivilization', 'lastcelebration']}}
+    assert SongList(**test_response)
+
+    test_response = {'status': -5, 'message': 'invalid songname or songid'}
+    assert SongAlias(**test_response)
