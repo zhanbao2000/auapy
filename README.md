@@ -1,7 +1,7 @@
 # <p align="center">auapy
 <p align="center">Call ArcaeaUnlimitedAPI in your python projects.
 
-## requirements
+## Requirements
 
  - httpx~=0.23.3
  - pydantic~=1.10.4
@@ -12,7 +12,7 @@
 pip install -r requirements.txt
 ```
 
-## usage
+## Usage
 
 ```python
 from src.plugins.mokabot_arcaea.auapy import ArcaeaUnlimitedAPIClient
