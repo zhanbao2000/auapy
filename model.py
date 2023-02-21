@@ -26,7 +26,7 @@ class Record(BaseModel):
     difficulty: int
     clear_type: int
     best_clear_type: int
-    time_played: int
+    time_played: int  # milliseconds
     near_count: int
     miss_count: int
     perfect_count: int
