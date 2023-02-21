@@ -101,6 +101,8 @@ class UserBest30(BaseResponse):
         best30_songinfo: Optional[list[Chart]]
         recent_score: Optional[Record]
         recent_songinfo: Optional[Chart]
+        best30_overflow: Optional[list[Record]]
+        best30_overflow_songinfo: Optional[list[Chart]]
 
     content: Optional[Content]
 
@@ -154,6 +156,8 @@ class DataTheory(BaseResponse):
         best30_songinfo: Optional[list[Chart]]
         recent_score: Optional[Record]
         recent_songinfo: Optional[Chart]
+        best30_overflow: Optional[list[Record]]
+        best30_overflow_songinfo: Optional[list[Chart]]
 
     content: Optional[Content]
 
