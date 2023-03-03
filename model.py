@@ -11,8 +11,8 @@ class AccountInfo(BaseModel):
     is_char_uncapped_override: bool
     is_char_uncapped: bool
     is_skill_sealed: bool
-    rating: int
-    join_date: int
+    rating: int  # 12.50 -> 1250, hidden -> -1, etc.
+    join_date: int  # milliseconds
     character: int
 
 
@@ -48,8 +48,8 @@ class Chart(BaseModel):
     bg: str
     date: int
     version: str
-    difficulty: int
-    rating: int
+    difficulty: int  # 9 -> 18, 9+ -> 19, etc.
+    rating: int  # 10.5 -> 105, etc.
     note: int
     chart_designer: str
     jacket_designer: str
