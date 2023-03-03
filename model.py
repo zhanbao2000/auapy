@@ -20,11 +20,11 @@ class Record(BaseModel):
     user_id: Optional[int]
     score: int
     health: int
-    rating: float
+    rating: float  # 10.9 PM -> 10.9 + 2 == 12.9, etc.
     song_id: str
     modifier: int
-    difficulty: int
-    clear_type: int
+    difficulty: int  # 0: past, 1: present, etc.
+    clear_type: int  # 0 ~ 5: Track Lost, Normal Clear, Full Recall, Pure Memory, Easy Clear, Hard Clear
     best_clear_type: int
     time_played: int  # milliseconds
     near_count: int
