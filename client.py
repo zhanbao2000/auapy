@@ -1,12 +1,17 @@
 from io import BytesIO
-from typing import TypeVar, Literal
+from typing import TypeVar, Literal, Optional, Union
 from urllib.parse import urlencode
 
 import httpx
 
 from .endpoint import ArcaeaUnlimitedAPIEndpoint as Endpoint
 from .exception import ArcaeaUnlimitedAPIError
-from .model import *
+from .model import (
+    BaseResponse,
+    UserInfo, UserBest, UserBest30,
+    SongList, SongInfo, SongAlias, SongRandom,
+    DataUpdate, DataTheory, DataChallenge, DataCert
+)
 
 BaseResponse_T = TypeVar('BaseResponse_T', bound=BaseResponse)
 
