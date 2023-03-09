@@ -251,7 +251,7 @@ class ArcaeaUnlimitedAPIClient:
             self,
             songname: Optional[str] = None,
             songid: Optional[str] = None,
-            difficulty: Union[Literal[3, 'byd', 'beyond'], int, None] = None,
+            difficulty: Union[str, int, None] = None,
             source: Literal['a2f', 'acr'] = 'a2f'
     ):
         """
@@ -270,8 +270,12 @@ class ArcaeaUnlimitedAPIClient:
 
         # from Aff2Preview (https://github.com/Arcaea-Infinity/Aff2Preview)
         if source == 'a2f':
-            if difficulty and difficulty not in (3, 'byn', 'beyond'):
-                raise ValueError('Aff2Preview only accept difficulty in 3, byn or beyond')
+            if difficulty and all((
+                    difficulty not in range(4),
+                    difficulty not in ('pst', 'prs', 'ftr', 'byn'),
+                    difficulty not in ('past', 'present', 'future', 'beyond')
+            )):
+                raise ValueError('Aff2Preview only accept difficulty in 0-3, pst/prs/ftr/byn or past/present/future/beyond')
             return await self._aua_request_bytes(Endpoint.Assets.preview, set_params(**locals()))
 
         # from ArcaeaChartRender (https://github.com/Arcaea-Infinity/ArcaeaChartRender)
