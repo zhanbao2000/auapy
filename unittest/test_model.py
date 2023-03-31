@@ -1,4 +1,8 @@
-from ..model import *
+from ..model import (
+    UserInfo, UserBest, UserBest30,
+    SongInfo, SongList, SongAlias, SongRandom,
+    DataUpdate, DataTheory, DataChallenge, DataCert
+)
 
 
 def test_user_info():
