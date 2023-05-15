@@ -37,8 +37,8 @@ async def main():
 
 - [x] [user/info](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/user/info.md)
 - [x] [user/best](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/user/best.md)
-- [ ] [user/bests/session](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/user/bests/session.md)
-- [ ] [user/bests/result](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/user/bests/result.md)
+- [x] [user/bests/session](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/user/bests/session.md) (without unit test)
+- [x] [user/bests/result](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/user/bests/result.md) (without unit test)
 - [x] [song/info](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/song/info.md)
 - [x] [song/list](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/song/list.md)
 - [x] [song/alias](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/song/alias.md)

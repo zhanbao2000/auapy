@@ -8,7 +8,7 @@ from .endpoint import ArcaeaUnlimitedAPIEndpoint as Endpoint
 from .exception import ArcaeaUnlimitedAPIError
 from .model import (
     BaseResponse,
-    UserInfo, UserBest, UserBest30,
+    UserInfo, UserBest, UserBestsSession, UserBestsResult,
     SongList, SongInfo, SongAlias, SongRandom,
     DataUpdate, DataTheory, DataChallenge, DataCert
 )
@@ -123,30 +123,41 @@ class ArcaeaUnlimitedAPIClient:
 
         return await self._aua_request_json(Endpoint.User.best, set_params(**locals()), UserBest)
 
-    async def get_user_best30(
-            self,
-            user: Optional[str] = None,
-            usercode: Optional[str] = None,
-            overflow: Optional[int] = None,
-            withrecent: Optional[bool] = None,
-            withsonginfo: Optional[bool] = None
-    ) -> UserBest30:
+    async def get_user_bests_session(self, user_name: Optional[str] = None, user_code: Optional[str] = None) -> UserBestsSession:
         """
-        Get user's best 30 score.
+        Get user's bests query queue session.
 
-        :param user: user name or 9-digit user code, optional when usercode is not null, otherwise false
-        :param usercode: 9-digit user code, optional when user is not null, otherwise false
-        :param overflow: (Optional) number, range 0-10. The number of the overflow records below the best30 minimum
-        :param withrecent: (Optional) boolean. if true, will reply with recent score
-        :param withsonginfo: (Optional) boolean. if true, will reply with songinfo
+        :param user_name: user name or 9-digit user code, optional when usercode is not null, otherwise false
+        :param user_code: 9-digit user code, optional when user is not null, otherwise false
         """
 
-        if not user and not usercode:
+        if not user_name and not user_code:
             raise ValueError('user and usercode cannot be both None')
+
+        return await self._aua_request_json(Endpoint.User.bests_session, set_params(**locals()), UserBestsSession)
+
+    async def get_user_bests_result(
+            self,
+            session_info: str,
+            overflow: Optional[int] = None,
+            with_recent: Optional[bool] = None,
+            with_song_info: Optional[bool] = None
+    ) -> UserBestsResult:
+        """
+        Get user's best 30 scores.
+
+        Note: This api is cache-based and the results may not be real-time.
+
+        :param session_info: session_info from `user/bests/session`
+        :param overflow: (Optional) number, range 0-10. The number of the overflow records below the best30 minimum
+        :param with_recent: (Optional) boolean. if true, will reply with recent_score
+        :param with_song_info: (Optional) boolean. if true, will reply with songinfo
+        """
+
         if overflow and overflow not in range(11):
             raise ValueError('overflow must be in range 0-10')
 
-        return await self._aua_request_json(Endpoint.User.best30, set_params(**locals()), UserBest30)
+        return await self._aua_request_json(Endpoint.User.bests_result, set_params(**locals()), UserBestsResult)
 
     async def get_song_info(self, song_name: Optional[str] = None, song_id: Optional[str] = None) -> SongInfo:
         """
