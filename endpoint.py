@@ -2,7 +2,8 @@ class ArcaeaUnlimitedAPIEndpoint:
     class User:
         info: str = '/user/info'
         best: str = '/user/best'
-        best30: str = '/user/best30'
+        best_session: str = '/user/bests/session'
+        best_result: str = '/user/bests/result'
 
     class Song:
         info: str = '/song/info'
@@ -14,6 +15,7 @@ class ArcaeaUnlimitedAPIEndpoint:
         icon: str = '/assets/icon'
         char: str = '/assets/char'
         song: str = '/assets/song'
+        aff: str = '/assets/aff'
         preview: str = '/assets/preview'
 
     class Data:
