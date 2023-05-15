@@ -67,21 +67,21 @@ class ArcaeaUnlimitedAPIClient:
 
     async def get_user_info(
             self,
-            user: Optional[str] = None,
-            usercode: Optional[str] = None,
+            user_name: Optional[str] = None,
+            user_code: Optional[str] = None,
             recent: Optional[int] = None,
             withsonginfo: Optional[bool] = None
     ) -> UserInfo:
         """
         Get user info and recent score.
 
-        :param user: user name or 9-digit user code, optional when usercode is not null, otherwise false
-        :param usercode: 9-digit user code, optional when user is not null, otherwise false
+        :param user_name: user name or 9-digit user code, optional when usercode is not null, otherwise false
+        :param user_code: 9-digit user code, optional when user is not null, otherwise false
         :param recent: (Optional) number, range 0-7. The number of recently played songs expected
         :param withsonginfo: (Optional) boolean. if true, will reply with songinfo
         """
 
-        if not user and not usercode:
+        if not user_name and not user_code:
             raise ValueError('user and usercode cannot be both None')
         if recent and recent not in range(8):
             raise ValueError('recent must be in range 0-7')
@@ -91,28 +91,28 @@ class ArcaeaUnlimitedAPIClient:
     async def get_user_best(
             self,
             difficulty: Union[int, str],
-            user: Optional[str] = None,
-            usercode: Optional[str] = None,
-            songname: Optional[str] = None,
+            user_name: Optional[str] = None,
+            user_code: Optional[str] = None,
+            song_name: Optional[str] = None,
             songid: Optional[str] = None,
-            withrecent: Optional[bool] = None,
-            withsonginfo: Optional[bool] = None
+            with_recent: Optional[bool] = None,
+            with_song_info: Optional[bool] = None
     ) -> UserBest:
         """
         Get user's best score of given chart.
 
         :param difficulty: accept format are 0/1/2/3 or pst/prs/ftr/byn or past/present/future/beyond
-        :param user: user name or 9-digit user code, optional when usercode is not null, otherwise false
-        :param usercode: 9-digit user code, optional when user is not null, otherwise false
-        :param songname: any song name for fuzzy querying, optional when songid is not null, otherwise false
+        :param user_name: user name or 9-digit user code, optional when usercode is not null, otherwise false
+        :param user_code: 9-digit user code, optional when user is not null, otherwise false
+        :param song_name: any song name for fuzzy querying, optional when songid is not null, otherwise false
         :param songid: sid in Arcaea songlist, optional when songname is not null, otherwise false
-        :param withrecent: (Optional) boolean. if true, will reply with recent score
-        :param withsonginfo: (Optional) boolean. if true, will reply with songinfo
+        :param with_recent: (Optional) boolean. if true, will reply with recent score
+        :param with_song_info: (Optional) boolean. if true, will reply with songinfo
         """
 
-        if not user and not usercode:
+        if not user_name and not user_code:
             raise ValueError('user and usercode cannot be both None')
-        if not songname and not songid:
+        if not song_name and not songid:
             raise ValueError('songname and songid cannot be both None')
         if all((
                 difficulty not in range(4),
@@ -148,15 +148,15 @@ class ArcaeaUnlimitedAPIClient:
 
         return await self._aua_request_json(Endpoint.User.best30, set_params(**locals()), UserBest30)
 
-    async def get_song_info(self, songname: Optional[str] = None, songid: Optional[str] = None) -> SongInfo:
+    async def get_song_info(self, song_name: Optional[str] = None, song_id: Optional[str] = None) -> SongInfo:
         """
         Get song's all difficulty and its alias.
 
-        :param songname: any song name for fuzzy querying, optional when songid is not null, otherwise false
-        :param songid: sid in Arcaea songlist, optional when songname is not null, otherwise false
+        :param song_name: any song name for fuzzy querying, optional when songid is not null, otherwise false
+        :param song_id: sid in Arcaea songlist, optional when songname is not null, otherwise false
         """
 
-        if not songname and not songid:
+        if not song_name and not song_id:
             raise ValueError('songname and songid cannot be both None')
 
         return await self._aua_request_json(Endpoint.Song.info, set_params(**locals()), SongInfo)
@@ -166,15 +166,15 @@ class ArcaeaUnlimitedAPIClient:
 
         return await self._aua_request_json(Endpoint.Song.list, {}, SongList)
 
-    async def get_song_alias(self, songname: Optional[str] = None, songid: Optional[str] = None) -> SongAlias:
+    async def get_song_alias(self, song_name: Optional[str] = None, song_id: Optional[str] = None) -> SongAlias:
         """
         Get song's alias.
 
-        :param songname: any song name for fuzzy querying, optional when songid is not null, otherwise false
-        :param songid: sid in Arcaea songlist, optional when songname is not null, otherwise false
+        :param song_name: any song name for fuzzy querying, optional when songid is not null, otherwise false
+        :param song_id: sid in Arcaea songlist, optional when songname is not null, otherwise false
         """
 
-        if not songname and not songid:
+        if not song_name and not song_id:
             raise ValueError('songname and songid cannot be both None')
 
         return await self._aua_request_json(Endpoint.Song.alias, set_params(**locals()), SongAlias)
@@ -183,16 +183,16 @@ class ArcaeaUnlimitedAPIClient:
             self,
             start: Optional[int] = None,
             end: Optional[int] = None,
-            withsonginfo: Optional[bool] = None
+            with_song_info: Optional[bool] = None
     ):
         """
         Get a random song.
 
         Note: It is recommended to use song/list API as the local cache data source.
 
-        :param start: (Optional) range of start (9 => 18, 10+ => 21)
+        :param start: (Optional) range of start (18 => 9, 21 => 10+)
         :param end: (Optional) range of end
-        :param withsonginfo: (Optional) boolean. if true, will reply with songinfo
+        :param with_song_info: (Optional) boolean. if true, will reply with songinfo
         """
 
         return await self._aua_request_json(Endpoint.Song.random, set_params(**locals()), SongRandom)
@@ -223,8 +223,8 @@ class ArcaeaUnlimitedAPIClient:
 
     async def get_assets_song(
             self,
-            songname: Optional[str] = None,
-            songid: Optional[str] = None,
+            song_name: Optional[str] = None,
+            song_id: Optional[str] = None,
             difficulty: Optional[Literal[3, 'byd', 'beyond']] = None,
             file: Optional[str] = None
     ):
@@ -233,14 +233,14 @@ class ArcaeaUnlimitedAPIClient:
 
         Note: It is not recommended to use this API frequently.
 
-        :param songname: any song name for fuzzy querying, optional when songid is not null, otherwise false
-        :param songid: sid in Arcaea songlist, optional when songname is not null, otherwise false
+        :param song_name: any song name for fuzzy querying, optional when songid is not null, otherwise false
+        :param song_id: sid in Arcaea songlist, optional when songname is not null, otherwise false
         :param difficulty: (Optional) accept format are 3 or byn or beyond
         :param file: filename for special songs, such as stager_1 or melodyoflove_night,
             optional when songid or songname is not null, otherwise false
         """
 
-        if not songname and not songid and not file:
+        if not song_name and not song_id and not file:
             raise ValueError('songname, songid and file cannot be all None')
         if difficulty and difficulty not in (3, 'byn', 'beyond'):
             raise ValueError('difficulty only accept 3, byn or beyond')
@@ -272,8 +272,8 @@ class ArcaeaUnlimitedAPIClient:
 
     async def get_assets_preview(
             self,
-            songname: Optional[str] = None,
-            songid: Optional[str] = None,
+            song_name: Optional[str] = None,
+            song_id: Optional[str] = None,
             difficulty: Union[str, int, None] = None,
             source: Literal['a2f', 'acr'] = 'a2f'
     ):
@@ -282,13 +282,13 @@ class ArcaeaUnlimitedAPIClient:
 
         Note: It is not recommended to use this API frequently.
 
-        :param songname: any song name for fuzzy querying, optional when songid is not null, otherwise false
-        :param songid: sid in Arcaea songlist, optional when songname is not null, otherwise false
+        :param song_name: any song name for fuzzy querying, optional when songid is not null, otherwise false
+        :param song_id: sid in Arcaea songlist, optional when songname is not null, otherwise false
         :param difficulty: (Optional) 3 or byn or beyond (for a2f) or 0/1/2/3 (for acr)
         :param source: (Optional) from which source
         """
 
-        if not songname and not songid:
+        if not song_name and not song_id:
             raise ValueError('songname and songid cannot be both None')
 
         # from Aff2Preview (https://github.com/Arcaea-Infinity/Aff2Preview)
@@ -305,10 +305,10 @@ class ArcaeaUnlimitedAPIClient:
         elif source == 'acr':
             if difficulty and difficulty not in range(4):
                 raise ValueError('ArcaeaChartRender only accept difficulty in 0-3')
-            if not songid:
+            if not song_id:
                 raise ValueError('to use ArcaeaChartRender you must provide songid')
             async with self._get_client() as client:
-                resp = await client.get(f'https://chart.arisa.moe/{songid}/{difficulty}.webp')
+                resp = await client.get(f'https://chart.arisa.moe/{song_id}/{difficulty}.webp')
                 return BytesIO(resp.content)
 
         raise ValueError('source only accept a2f or acr')
@@ -321,16 +321,16 @@ class ArcaeaUnlimitedAPIClient:
     async def get_data_theory(
             self,
             overflow: Optional[int] = None,
-            withrecent: Optional[bool] = None,
-            withsonginfo: Optional[bool] = None,
+            with_recent: Optional[bool] = None,
+            with_song_info: Optional[bool] = None,
             version: Optional[str] = None
     ) -> DataTheory:
         """
         Get the best 30 score under the given version with a theory player.
 
         :param overflow: (Optional) number, range 0-10. The number of the overflow records below the best30 minimum
-        :param withrecent: (Optional) boolean. if true, will reply with recent_score
-        :param withsonginfo: (Optional) boolean. if true, will reply with songinfo
+        :param with_recent: (Optional) boolean. if true, will reply with recent_score
+        :param with_song_info: (Optional) boolean. if true, will reply with songinfo
         :param version: (Optional) string, formatted like '4.0'. The version of Arcaea.
         """
 

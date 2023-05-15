@@ -17,7 +17,7 @@ async def test_get_user_info():
 
 @pytest.mark.asyncio
 async def test_get_user_best():
-    assert await client.get_user_best(difficulty=2, user='ToasterKoishi', songid='ifi', withrecent=True, withsonginfo=True)
+    assert await client.get_user_best(difficulty=2, user_name='ToasterKoishi', songid='ifi', with_recent=True, with_song_info=True)
 
 
 @pytest.mark.asyncio
@@ -37,7 +37,7 @@ async def test_get_song_list():
 
 @pytest.mark.asyncio
 async def test_get_song_random():
-    assert await client.get_song_random(start=18, end=21, withsonginfo=True)
+    assert await client.get_song_random(start=18, end=21, with_song_info=True)
 
 
 @pytest.mark.asyncio
@@ -62,8 +62,8 @@ async def test_get_assets_aff():
 
 @pytest.mark.asyncio
 async def test_get_assets_preview():
-    assert await client.get_assets_preview(songid='testify', difficulty=3, source='a2f')
-    assert await client.get_assets_preview(songid='testify', difficulty=3, source='acr')
+    assert await client.get_assets_preview(song_id='testify', difficulty=3, source='a2f')
+    assert await client.get_assets_preview(song_id='testify', difficulty=3, source='acr')
 
 
 @pytest.mark.asyncio
@@ -73,7 +73,7 @@ async def test_get_data_update():
 
 @pytest.mark.asyncio
 async def test_get_data_theory():
-    assert await client.get_data_theory(overflow=5, withrecent=True, withsonginfo=True)
+    assert await client.get_data_theory(overflow=5, with_recent=True, with_song_info=True)
 
 
 @pytest.mark.asyncio

@@ -44,7 +44,7 @@ def test_song_alias():
 def test_song_random():
 
     test_response = {'status': 0, 'content': {'id': 'divinelight', 'ratingClass': 2, 'songinfo': {'name_en': 'Divine Light of Myriad', 'name_jp': '光速神授説 - Divine Light of Myriad -', 'artist': 'yoho', 'bpm': '172', 'bpm_base': 172.0, 'set': 'observer_append_2', 'set_friendly': 'Esoteric Order', 'time': 142, 'side': 0, 'world_unlock': False, 'remote_download': True, 'bg': 'observer_light', 'date': 1626825602, 'version': '3.7', 'difficulty': 21, 'rating': 108, 'note': 1021, 'chart_designer': '東星※神授', 'jacket_designer': '緋原ヨウ', 'jacket_override': False, 'audio_override': False}}}
-    assert SongRandom(**test_response).content.songinfo.name_en == 'Divine Light of Myriad'
+    assert SongRandom(**test_response).content.song_info.name_en == 'Divine Light of Myriad'
 
 
 def test_data_update():

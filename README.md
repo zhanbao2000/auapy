@@ -24,35 +24,39 @@ async def main():
         'Yout User Agent',
         'Your Bearer Token'
     )
-    
+
     user_info = await client.get_user_info('ToasterKoishi', recent=5, withsonginfo=True)
     print(user_info.content.account_info.rating)
 
-    song_info = await client.get_song_info(songid='infinityheaven')
+    song_info = await client.get_song_info(song_id='infinityheaven')
     print(song_info.content.difficulties[0].name_en)
 ```
 
 
 ## Supported endpoints
 
-- [x] [user/info](https://github.com/Arcaea-Infinity/ArcaeaUnlimitedAPI-Wiki/blob/main/user/info.md)
-- [x] [user/best](https://github.com/Arcaea-Infinity/ArcaeaUnlimitedAPI-Wiki/blob/main/user/best.md)
-- [x] [user/best30](https://github.com/Arcaea-Infinity/ArcaeaUnlimitedAPI-Wiki/blob/main/user/best30.md)
-- [x] [song/info](https://github.com/Arcaea-Infinity/ArcaeaUnlimitedAPI-Wiki/blob/main/song/info.md)
-- [x] [song/list](https://github.com/Arcaea-Infinity/ArcaeaUnlimitedAPI-Wiki/blob/main/song/list.md)
-- [x] [song/alias](https://github.com/Arcaea-Infinity/ArcaeaUnlimitedAPI-Wiki/blob/main/song/alias.md)
-- [x] [song/random](https://github.com/Arcaea-Infinity/ArcaeaUnlimitedAPI-Wiki/blob/main/song/random.md)
-- [x] [assets/icon](https://github.com/Arcaea-Infinity/ArcaeaUnlimitedAPI-Wiki/blob/main/assets/icon.md)
-- [x] [assets/char](https://github.com/Arcaea-Infinity/ArcaeaUnlimitedAPI-Wiki/blob/main/assets/char.md)
-- [x] [assets/song](https://github.com/Arcaea-Infinity/ArcaeaUnlimitedAPI-Wiki/blob/main/assets/song.md)
-- [x] [assets/preview](https://github.com/Arcaea-Infinity/ArcaeaUnlimitedAPI-Wiki/blob/main/assets/preview.md)
-- [x] [data/update](https://github.com/Arcaea-Infinity/ArcaeaUnlimitedAPI-Wiki/blob/main/data/update.md)
-- [x] [data/theory](https://github.com/Arcaea-Infinity/ArcaeaUnlimitedAPI-Wiki/blob/main/data/theory.md)
-- [x] [data/challenge](https://github.com/Arcaea-Infinity/ArcaeaUnlimitedAPI-Wiki/blob/main/data/challenge.md)
-- [x] [data/cert](https://github.com/Arcaea-Infinity/ArcaeaUnlimitedAPI-Wiki/blob/main/data/cert.md)
+- [x] [user/info](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/user/info.md)
+- [x] [user/best](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/user/best.md)
+- [ ] [user/bests/session](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/user/bests/session.md)
+- [ ] [user/bests/result](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/user/bests/result.md)
+- [x] [song/info](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/song/info.md)
+- [x] [song/list](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/song/list.md)
+- [x] [song/alias](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/song/alias.md)
+- [x] [song/random](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/song/random.md)
+- [x] [assets/icon](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/assets/icon.md)
+- [x] [assets/char](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/assets/char.md)
+- [x] [assets/song](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/assets/song.md)
+- [x] [assets/preview](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/assets/preview.md)
+- [x] [data/update](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/data/update.md)
+- [x] [data/theory](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/data/theory.md)
+- [x] [data/challenge](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/data/challenge.md)
+- [x] [data/cert](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/data/cert.md)
+- [ ] [image/user/*](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs/blob/main/image/user.md)
 
 ## Credits
 
+ - [UnofficialArcaeaAPI.Docs](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Docs)
+ - [UnofficialArcaeaAPI.Lib](https://github.com/Arcaea-Infinity/UnofficialArcaeaAPI.Lib)
  - [ArcaeaUnlimitedAPI-Wiki](https://github.com/Arcaea-Infinity/ArcaeaUnlimitedAPI-Wiki)
  - [ArcaeaUnlimitedAPI.Lib](https://github.com/Arcaea-Infinity/ArcaeaUnlimitedAPI.Lib)
  - [ArcaeaChartRender](https://github.com/Arcaea-Infinity/ArcaeaChartRender)
