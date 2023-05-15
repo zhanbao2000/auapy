@@ -247,6 +247,29 @@ class ArcaeaUnlimitedAPIClient:
 
         return await self._aua_request_bytes(Endpoint.Assets.song, set_params(**locals()))
 
+    async def get_assets_aff(
+            self,
+            song_name: Optional[str] = None,
+            song_id: Optional[str] = None,
+            difficulty: Optional[Literal[3, 'byd', 'beyond']] = None,
+    ):
+        """
+        Get song's aff (Arcaea chart file).
+
+        Note: It is not recommended to use this API frequently, and this API only returns affs from the installation package.
+
+        :param song_name: any song name for fuzzy querying, optional when song_id is not null, otherwise false
+        :param song_id: sid in Arcaea songlist, optional when song_name is not null, otherwise false
+        :param difficulty: (Optional) accept format are 3 or byn or beyond
+        """
+
+        if not song_name and not song_id:
+            raise ValueError('song_name and song_id cannot be both None')
+        if difficulty and difficulty not in (3, 'byn', 'beyond'):
+            raise ValueError('difficulty only accept 3, byn or beyond')
+
+        return await self._aua_request_bytes(Endpoint.Assets.aff, set_params(**locals()))
+
     async def get_assets_preview(
             self,
             songname: Optional[str] = None,

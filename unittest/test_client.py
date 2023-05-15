@@ -56,6 +56,11 @@ async def test_get_assets_song():
 
 
 @pytest.mark.asyncio
+async def test_get_assets_aff():
+    assert await client.get_assets_aff('gl')
+
+
+@pytest.mark.asyncio
 async def test_get_assets_preview():
     assert await client.get_assets_preview(songid='testify', difficulty=3, source='a2f')
     assert await client.get_assets_preview(songid='testify', difficulty=3, source='acr')
