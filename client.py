@@ -70,7 +70,7 @@ class ArcaeaUnlimitedAPIClient:
             user_name: Optional[str] = None,
             user_code: Optional[str] = None,
             recent: Optional[int] = None,
-            withsonginfo: Optional[bool] = None
+            with_song_info: Optional[bool] = None
     ) -> UserInfo:
         """
         Get user info and recent score.
@@ -78,7 +78,7 @@ class ArcaeaUnlimitedAPIClient:
         :param user_name: user name or 9-digit user code, optional when usercode is not null, otherwise false
         :param user_code: 9-digit user code, optional when user is not null, otherwise false
         :param recent: (Optional) number, range 0-7. The number of recently played songs expected
-        :param withsonginfo: (Optional) boolean. if true, will reply with songinfo
+        :param with_song_info: (Optional) boolean. if true, will reply with songinfo
         """
 
         if not user_name and not user_code:
@@ -94,7 +94,7 @@ class ArcaeaUnlimitedAPIClient:
             user_name: Optional[str] = None,
             user_code: Optional[str] = None,
             song_name: Optional[str] = None,
-            songid: Optional[str] = None,
+            song_id: Optional[str] = None,
             with_recent: Optional[bool] = None,
             with_song_info: Optional[bool] = None
     ) -> UserBest:
@@ -105,14 +105,14 @@ class ArcaeaUnlimitedAPIClient:
         :param user_name: user name or 9-digit user code, optional when usercode is not null, otherwise false
         :param user_code: 9-digit user code, optional when user is not null, otherwise false
         :param song_name: any song name for fuzzy querying, optional when songid is not null, otherwise false
-        :param songid: sid in Arcaea songlist, optional when songname is not null, otherwise false
+        :param song_id: sid in Arcaea songlist, optional when songname is not null, otherwise false
         :param with_recent: (Optional) boolean. if true, will reply with recent score
         :param with_song_info: (Optional) boolean. if true, will reply with songinfo
         """
 
         if not user_name and not user_code:
             raise ValueError('user and usercode cannot be both None')
-        if not song_name and not songid:
+        if not song_name and not song_id:
             raise ValueError('songname and songid cannot be both None')
         if all((
                 difficulty not in range(4),

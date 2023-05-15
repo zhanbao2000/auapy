@@ -11,13 +11,13 @@ client = ArcaeaUnlimitedAPIClient(
 
 @pytest.mark.asyncio
 async def test_get_user_info():
-    assert await client.get_user_info('ToasterKoishi', recent=1, withsonginfo=True)
-    assert await client.get_user_info('ToasterKoishi', recent=0, withsonginfo=False)
+    assert await client.get_user_info('ToasterKoishi', recent=1, with_song_info=True)
+    assert await client.get_user_info('ToasterKoishi', recent=0, with_song_info=False)
 
 
 @pytest.mark.asyncio
 async def test_get_user_best():
-    assert await client.get_user_best(difficulty=2, user_name='ToasterKoishi', songid='ifi', with_recent=True, with_song_info=True)
+    assert await client.get_user_best(difficulty=2, user_name='ToasterKoishi', song_id='ifi', with_recent=True, with_song_info=True)
 
 
 @pytest.mark.asyncio

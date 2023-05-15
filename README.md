@@ -17,15 +17,15 @@ pip install -r requirements.txt
 ```python
 from auapy import ArcaeaUnlimitedAPIClient
 
+
 async def main():
-    
     client = ArcaeaUnlimitedAPIClient(
         'http://localhost:61658/botarcapi',
         'Yout User Agent',
         'Your Bearer Token'
     )
 
-    user_info = await client.get_user_info('ToasterKoishi', recent=5, withsonginfo=True)
+    user_info = await client.get_user_info('ToasterKoishi', recent=5, with_song_info=True)
     print(user_info.content.account_info.rating)
 
     song_info = await client.get_song_info(song_id='infinityheaven')
